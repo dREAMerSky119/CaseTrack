@@ -379,6 +379,31 @@ def not_found(_): return jsonify(message="Endpoint or record not found."),404
 @app.errorhandler(500)
 def internal_error(_): db.session.rollback(); return jsonify(message="Unexpected server error. Check the Flask terminal for details."),500
 
+
+from routes.extra_features import register_extra_routes
+
+register_extra_routes(
+    app,
+    db,
+    {
+        "Complaint": Complaint,
+        "Institution": Institution,
+        "CaseHistory": CaseHistory,
+        "AuditLog": AuditLog,
+        "RelatedCase": RelatedCase,
+        "Handover": Handover,
+    },
+    {
+        "login_required": login_required,
+        "actor_name": actor_name,
+        "record_history": record_history,
+        "refresh_case_intelligence": refresh_case_intelligence,
+        "related_reason": related_reason,
+        "iso_today": iso_today,
+    },
+)
+
+
 with app.app_context():
     db.create_all()
     seed_database()

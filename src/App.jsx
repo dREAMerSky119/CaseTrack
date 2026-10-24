@@ -12,6 +12,7 @@ import Analytics from "./pages/Analytics";
 import Relationships from "./pages/Relationships";
 import Login from "./pages/Login";
 import Placeholder from "./pages/Placeholder";
+import Alerts from "./pages/Alerts";
 
 export default function App() {
   const [user,setUser]=useState(null);const [complaints,setComplaints]=useState([]);const [institutions,setInstitutions]=useState([]);const [loading,setLoading]=useState(true);const [loadError,setLoadError]=useState("");const navigate=useNavigate();const location=useLocation();
@@ -37,6 +38,7 @@ export default function App() {
       <Route path="/relationships" element={<Relationships complaints={complaints}/>}/>
       <Route path="/settings" element={<Placeholder title="Settings"/>}/>
       <Route path="*" element={<Navigate to="/" replace/>}/>
+      <Route path="/alerts" element={<Alerts />} />
     </Routes>
   </main><footer className="app-footer"><span>© 2026 CaseTrack 360 <i>·</i> Prototype</span><span>Built for cross-bureau complaint intelligence</span></footer></div></div>;
 }
